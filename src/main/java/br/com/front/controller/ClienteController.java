@@ -32,6 +32,12 @@ public class ClienteController {
 			Collection<Cliente> clienteEncontrados = clienteService.buscacClientes();
 			return new ResponseEntity<>(clienteEncontrados, HttpStatus.OK);
 		}
+		
+		@RequestMapping(method = RequestMethod.GET, value = "/clientes/{id}", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+		public Optional<Cliente> buscaClientesPorId(@PathVariable Integer id) {
+			Optional<Cliente> clienteEncontrado = clienteService.buscaPorId(id);
+			return clienteEncontrado;
+		}
 
 		@RequestMapping(method = RequestMethod.DELETE, value = "/clientes/{id}")
 		public ResponseEntity<Void> excluirCliente(@PathVariable Integer id) {
